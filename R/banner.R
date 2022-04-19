@@ -226,7 +226,7 @@ oyyyyyyyo                                                  oyyyyyyyyo
       color <- crayon::make_style('black')
       if (chars[[j]] != ' ') {
         color_legend <- list(a = 'red', t = 'blue', c = 'yellow', g = 'green',
-                             b = '#f99ada',d = '#f9751d', e = 'white', o = 'green', x = 'black', y = 'cyan', z='black')
+                             b = '#f99ada',d = '#f9751d', e = 'cyan', o = 'green', x = 'black', y = 'blue', z='black')
         color <- crayon::make_style(color_legend[[color_map_chars[[j]]]])
       }
       # if(color_map_chars[[j]] == 'b') {color <- 'pink'}
