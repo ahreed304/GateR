@@ -64,6 +64,9 @@ mkdir <- function(path) {
 #' @param files List of tsv/csv files to be read as dataframes and combined.
 #' @param ids List of ids in same length/order as files. If not provided, defaults to files param value.
 #'
+#' @return
+#' @export
+#'
 #' @examples
 #' path/to/files |> list.files() |> merge_dfs()
 merge_dfs <- function(files, ids = files) {

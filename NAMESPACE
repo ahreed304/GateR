@@ -3,5 +3,6 @@
 export("%!in%")
 export(cowtime)
 export(display_banner)
+export(merge_dfs)
 export(merge_pdfs)
 export(mkdir)
