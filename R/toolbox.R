@@ -4,18 +4,37 @@ library(fortunes)
 library(data.table)
 library(tidyverse)
 
-# mkdir <- function(path) {
-#   if (file.exists(path)) {
-#     # "Directory/file exists at {path}.  Cannot create directory." |> glue() |> warning()
-#   }
-#   else{
-#     'Creating new directory {path}' |> glue() |> print()
-#     dir.create(path)
-#   }
-#   path
-# }
-#
-# '%!in%' <- function(x,y)!('%in%'(x,y))
+#' mkdir
+#'
+#' @param path
+#'
+#' @return
+#' @export
+#'
+#' @examples
+#' mkdir('path/to/dir')
+mkdir <- function(path) {
+  if (file.exists(path)) {
+    # "Directory/file exists at {path}.  Cannot create directory." |> glue() |> warning()
+  }
+  else{
+    'Creating new directory {path}' |> glue() |> print()
+    dir.create(path)
+  }
+  path
+}
+
+#' %!in%
+#'
+#' @param x Item to compare
+#' @param y Item to compare
+#'
+#' @return
+#' @export
+#'
+#' @examples
+#' if(1 %!in! c(2, 3, 4)) {do_something()}
+'%!in%' <- function(x,y){!('%in%'(x,y))}
 #
 # get_datetime_string <- function() {
 #   now(tzone = "US/Central") %>%
@@ -42,15 +61,12 @@ library(tidyverse)
 
 #' Merge DFs
 #'
-#' @param files List of tsv/csv files containing dataframes
-#' @param ids List of ids in same length/order as files
-#'
-#' @return
-#' @export
+#' @param files List of tsv/csv files to be read as dataframes and combined.
+#' @param ids List of ids in same length/order as files. If not provided, defaults to files param value.
 #'
 #' @examples
-#' merge_dfs(files, ids)
-merge_dfs <- function(files, ids) {
+#' path/to/files |> list.files() |> merge_dfs()
+merge_dfs <- function(files, ids = files) {
   if (length(files) != length(ids)) {stop("'files' and 'ids' params are different sizes")}
   seq_along(files) |> lapply(\(i){
     df <- files[[i]] |> fread()
@@ -59,34 +75,51 @@ merge_dfs <- function(files, ids) {
   }) |> bind_rows()
 }
 
-# merge_pdfs <- function(dir) {
-#   qpdf::pdf_combine(
-#     input = dir |> list.files(full.names = TRUE) |> as.character(),
-#     output = "{output_root}/!plots_combined.pdf" |> glue()
-#   )
-# }
-#
-# # samples <- dirs$cellranger$tcr |> list.files()
-# # files <- "{dirs$cellranger$tcr}/{samples}/outs/filtered_contig_annotations.csv" |> glue()
-# # foo <- merge_dfs(files, samples)
-# cowtime <- function(expr, name = NA) {
-#   s_time <-  now(tzone = "US/Central")
-#   msg <- s_time |> as.character()
-#   # msg <- s_time |> as.character()
-#   if (!is.na(name)) {
-#     msg <- glue("\nstarting \"{name}\"\n{msg}")
-#   }
-#   say(msg, "chicken")
-#   expr
-#   e_time <- now(tzone = "US/Central")
-#   delta_time <- (e_time - s_time) %>% as.duration %>% as.character
-#   msg <- glue("Execution time: \n{delta_time}")
-#   if (!is.na(name)) {
-#     msg <- glue("Execution time for \"{name}\": \n{delta_time}")
-#   }
-#   say(msg, "cow")
-# }
-#
+#' Merge PDFs
+#'
+#' @param dir Directory containing PDFs to combine
+#'
+#' @return
+#' @export
+#'
+#' @examples
+#' merge_pdfs('path/to/folder/containing/PDFs')
+merge_pdfs <- function(dir) {
+  qpdf::pdf_combine(
+    input = dir |> list.files(full.names = TRUE) |> as.character(),
+    output = "{output_root}/!plots_combined.pdf" |> glue()
+  )
+}
+
+
+#' Cowtime
+#'
+#' @param expr Expression to be timed.
+#' @param name (Optional) Name of expression to be printed in console
+#'
+#' @return
+#' @export
+#'
+#' @examples
+#' cowtime(name = 'do thing', { do_thing() })
+cowtime <- function(expr, name = NA) {
+  s_time <-  now(tzone = "US/Central")
+  msg <- s_time |> as.character()
+  # msg <- s_time |> as.character()
+  if (!is.na(name)) {
+    msg <- glue("\nstarting \"{name}\"\n{msg}")
+  }
+  cowsay(msg, "chicken")
+  expr
+  e_time <- now(tzone = "US/Central")
+  delta_time <- (e_time - s_time) %>% as.duration %>% as.character
+  msg <- glue("Execution time: \n{delta_time}")
+  if (!is.na(name)) {
+    msg <- glue("Execution time for \"{name}\": \n{delta_time}")
+  }
+  say(msg, "cow")
+}
+
 # distraction <- function() {
 #   say("fortune","random")
 # }
