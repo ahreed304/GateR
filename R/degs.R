@@ -37,7 +37,7 @@ filter_degs <- function(degs, bh_threshold = 0.01, logfc_threshold = 0.585, excl
   # if(!is.null(excluded_patterns)){ degs_filtered <- degs_filtered[!excluded_patterns |> paste(collapse = '|') |> grep(gene)] }
   degs_filtered <- degs[degs$BH <= bh_threshold,]
   degs_filtered <- degs_filtered[abs(degs$avg_log2FC) >= logfc_threshold,]
-  if(!is.null(excluded_patterns)){ degs_filtered <- degs_filtered[!excluded_patterns |> paste(collapse = '|') |> grep(gene),] }
+  if(!is.null(excluded_patterns)){ degs_filtered <- degs_filtered[!excluded_patterns |> paste(collapse = '|') |> grep(degs_filtered$gene),] }
   degs_filtered
 }
 
