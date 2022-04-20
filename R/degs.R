@@ -18,6 +18,7 @@ read_degs <- function(file) {
 
 #' Filter DEGs
 #'
+#' @import data.table
 #' @param degs Data table containing DEGs.  Expecting format like the output of read_degs()
 #' @param bh_threshold maximum BH corrected p value
 #' @param logfc_threshold Minimum log fold change value
@@ -32,19 +33,20 @@ filter_degs <- function(degs, bh_threshold = 0.01, logfc_threshold = 0.585, excl
   # TODO: Find out why the following 3 lines work only when imported locally.
   # When imported as a library, data table seems to fail to work properly
   # Temporary fix is to use dataframe syntax here
-  # degs_filtered <- degs[BH <= bh_threshold,]
-  # degs_filtered <- degs_filtered[abs(avg_log2FC) >= logfc_threshold]
-  # if(!is.null(excluded_patterns)){ degs_filtered <- degs_filtered[!excluded_patterns |> paste(collapse = '|') |> grep(gene)] }
-  degs_filtered <- degs[degs$BH <= bh_threshold,]
-  degs_filtered <- degs_filtered[abs(degs_filtered$avg_log2FC) >= logfc_threshold,]
-  if(!is.null(excluded_patterns)){ degs_filtered <- degs_filtered[!excluded_patterns |> paste(collapse = '|') |> grepl(degs_filtered$gene),] }
+  degs_filtered <- degs[BH <= bh_threshold,]
+  degs_filtered <- degs_filtered[abs(avg_log2FC) >= logfc_threshold]
+  if(!is.null(excluded_patterns)){ degs_filtered <- degs_filtered[!excluded_patterns |> paste(collapse = '|') |> grep(gene)] }
+  # degs_filtered <- degs[degs$BH <= bh_threshold,]
+  # degs_filtered <- degs_filtered[abs(degs_filtered$avg_log2FC) >= logfc_threshold,]
+  # if(!is.null(excluded_patterns)){ degs_filtered <- degs_filtered[!excluded_patterns |> paste(collapse = '|') |> grepl(degs_filtered$gene),] }
   degs_filtered
 }
 
 #' Parse DEG Filename
 #'
+#' @import magrittr
 #' @param deg_file csv file containing DEGs. Either full path or filename is acceptable
-#'
+#' 
 #' @return
 #' @export
 #'

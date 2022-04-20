@@ -6,6 +6,7 @@ library(tidyverse)
 
 #' mkdir
 #'
+#' @import glue
 #' @param path
 #'
 #' @return
@@ -63,7 +64,8 @@ mkdir <- function(path) {
 #'
 #' @param files List of tsv/csv files to be read as dataframes and combined.
 #' @param ids List of ids in same length/order as files. If not provided, defaults to files param value.
-#'
+#' @import data.table
+#' @import dplyr
 #' @return
 #' @export
 #'
@@ -80,6 +82,7 @@ merge_dfs <- function(files, ids = files) {
 
 #' Merge PDFs
 #'
+#' @import qpdf
 #' @param dir Directory containing PDFs to combine
 #'
 #' @return
@@ -88,7 +91,7 @@ merge_dfs <- function(files, ids = files) {
 #' @examples
 #' merge_pdfs('path/to/folder/containing/PDFs')
 merge_pdfs <- function(dir) {
-  qpdf::pdf_combine(
+  pdf_combine(
     input = dir |> list.files(full.names = TRUE) |> as.character(),
     output = "{output_root}/!plots_combined.pdf" |> glue()
   )
@@ -97,6 +100,8 @@ merge_pdfs <- function(dir) {
 
 #' Cowtime
 #'
+#' @import cowsay
+#' @import lubridate
 #' @param expr Expression to be timed.
 #' @param name (Optional) Name of expression to be printed in console
 #'

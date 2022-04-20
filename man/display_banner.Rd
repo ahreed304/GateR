@@ -4,7 +4,12 @@
 \alias{display_banner}
 \title{Display Banner}
 \usage{
-display_banner()
+display_banner(banner, color_map, color_legend)
+}
+\arguments{
+\item{banner}{list of character-color pairs}
+
+\item{color_map}{color codes for banner}
 }
 \value{
 
