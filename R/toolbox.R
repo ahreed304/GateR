@@ -1,9 +1,3 @@
-library(lubridate)
-library(cowsay)
-library(fortunes)
-library(data.table)
-library(tidyverse)
-
 #' mkdir
 #'
 #' @import glue

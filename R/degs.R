@@ -1,8 +1,6 @@
-library(data.table)
-library(tidyverse)
-
 #' Read DEGs
 #'
+#' @import data.table
 #' @param file csv file containing degs
 #'
 #' @return
@@ -46,7 +44,7 @@ filter_degs <- function(degs, bh_threshold = 0.01, logfc_threshold = 0.585, excl
 #'
 #' @import magrittr
 #' @param deg_file csv file containing DEGs. Either full path or filename is acceptable
-#' 
+#'
 #' @return
 #' @export
 #'
