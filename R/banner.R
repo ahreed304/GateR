@@ -108,26 +108,33 @@ gater_banner <- function() {
   display_banner(
     banner = r"{
            .-._   _ _ _ _ _ _ _ _
-.-''-.__.-'00  '-' ' ' ' ' ' ' ' '-.
-'.___ '    .   .--_'-' '-' '-' _'-' '._
- V: V 'vv-'   '_   '.       .'  _..' '.'.
-   '=.____.=_.--'   :_.__.__:_   '.   : :
-           (((____.-'        '-.  /   : :
-                             (((-'\ .' /
-                           _____..'  .'
-                          '-._____.-'    
+.-''-.__.-'00  '-' ' ' ' ' ' ' ' '-._
+'.___ '    .   .--_'-' '-' '-' _'-'  '-. 
+ V: V 'vv-'   '_   '.       .'  _.._     '.
+   '=.____.=_.--'   :_.__.__:_   '.  '-.   '
+           (((____.-'        '-.  /     \   \
+  ________        __        _(((-'____   '   ' 
+ /  _____/_____ _/  |_  ____\______   \   '  |
+/   \  ___\__  \\   __\/ __ \|       _/   '  ' 
+\    \_\  \/ __ \|  | \  ___/|    |   \   | /
+ \______  (____  /__|  \___  >____|_  /   |/
+        \/     \/          \/       \/
 }",
     color_map = r"{
            gggg   g g g g g g g g
-gggggggggggww  ggg g g g g g g g ggg
-ggggg g    g   ggggggg ggg ggg gggg ggg
- wg w gwwgg   gg   gg       gg  gggg gggg
-   gggggggggggggg   gggggggggg   gg   g g
-           gggggggggg        ggg  g   g g
-                             gggggg gg g
-                           gggggggg  gg
-                          ggggggggggg    
+gggggggggggww  ggg g g g g g g g gggg
+ggggg g    g   ggggggg ggg ggg gggg  ggg 
+ wg w gwwgg   gg   gg       gg  gggg     gg
+   gggggggggggggg   gggggggggg   gg  ggg   g
+           aaaggggggg        ggg  g     g   g
+  bbbbbbbb        bb        baaaggbbbb   g   g 
+ b  bbbbbbbbbbb bb  bb  bbbbbbbbbbb   b   g  g
+b   b  bbbbbb  bb   bbbb bb bb       bb   g  g 
+b    bbb  bb bb bb  b b  bbbbb    b   b   g g
+ bbbbbbb  bbbbb  bbbb  bbbb  bbbbbbb  b   gg
+        bb     bb          bb       bb
 }",
-    color_legend = list(g = 'green', w = 'white', default = 'black')
+    color_legend = list(g = 'green', w = 'white', a = 'green', b = '#f9751d', default = 'black')
   )
 }
+gater_banner()
