@@ -84,8 +84,8 @@ merge_csvs <- function(files, ids = files) {
 merge_dfs <- function(dfs, ids = names(dfs)) {
   if (length(dfs) != length(ids)) {stop("'dfs' and 'ids' params are different sizes")}
   seq_along(dfs) |> lapply(\(i){
-    df$id <- ids[[i]]
-    df
+    dfs[[i]]$id <- ids[[i]]
+    dfs[[i]]
   }) |> bind_rows()
 }
 
