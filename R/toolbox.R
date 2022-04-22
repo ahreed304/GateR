@@ -54,7 +54,7 @@ mkdir <- function(path) {
 # }
 
 
-#' Merge DFs
+#' Merge CSVs
 #'
 #' @param files List of tsv/csv files to be read as dataframes and combined.
 #' @param ids List of ids in same length/order as files. If not provided, defaults to files param value.
@@ -64,15 +64,31 @@ mkdir <- function(path) {
 #' @export
 #'
 #' @examples
-#' path/to/files |> list.files() |> merge_dfs()
-merge_dfs <- function(files, ids = files) {
+#' path/to/files |> list.files() |> merge_csvs()
+merge_csvs <- function(files, ids = files) {
   if (length(files) != length(ids)) {stop("'files' and 'ids' params are different sizes")}
-  seq_along(files) |> lapply(\(i){
-    df <- files[[i]] |> fread()
+  files |> lapply(fread) |> merge_dfs(ids)
+}
+
+
+#' Merge DFs
+#'
+#' @param dfs List of dataframes to be combined.
+#' @param ids List of ids in same length/order as files. If not provided, defaults to names(dfs).
+#' @import dplyr
+#' @return
+#' @export
+#'
+#' @examples
+#' path/to/files |> list.files() |> merge_dfs()
+merge_dfs <- function(dfs, ids = names(dfs)) {
+  if (length(dfs) != length(ids)) {stop("'dfs' and 'ids' params are different sizes")}
+  seq_along(dfs) |> lapply(\(i){
     df$id <- ids[[i]]
     df
   }) |> bind_rows()
 }
+
 
 #' Merge PDFs
 #'

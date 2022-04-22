@@ -4,12 +4,12 @@
 \alias{merge_dfs}
 \title{Merge DFs}
 \usage{
-merge_dfs(files, ids = files)
+merge_dfs(dfs, ids = names(dfs))
 }
 \arguments{
-\item{files}{List of tsv/csv files to be read as dataframes and combined.}
+\item{dfs}{List of dataframes to be combined.}
 
-\item{ids}{List of ids in same length/order as files. If not provided, defaults to files param value.}
+\item{ids}{List of ids in same length/order as files. If not provided, defaults to names(dfs).}
 }
 \value{
 
