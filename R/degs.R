@@ -27,16 +27,10 @@ read_degs <- function(file) {
 #'
 #' @examples
 #''path/to/file' |> read_degs() |> filter_degs(logfc_threshold = 0.25, excluded_patterns = c("^RP", "^XIST$"))
-filter_degs <- function(degs, bh_threshold = 0.01, logfc_threshold = 0.585, excluded_patterns = NULL) {
-  # TODO: Find out why the following 3 lines work only when imported locally.
-  # When imported as a library, data table seems to fail to work properly
-  # Temporary fix is to use dataframe syntax here
+filter_degs <- function(degs, bh_threshold = Inf, logfc_threshold = 0, excluded_patterns = NULL) {
   degs_filtered <- degs[BH <= bh_threshold,]
   degs_filtered <- degs_filtered[abs(avg_log2FC) >= logfc_threshold]
   if(!is.null(excluded_patterns)){ degs_filtered <- degs_filtered[!excluded_patterns |> paste(collapse = '|') |> grep(gene)] }
-  # degs_filtered <- degs[degs$BH <= bh_threshold,]
-  # degs_filtered <- degs_filtered[abs(degs_filtered$avg_log2FC) >= logfc_threshold,]
-  # if(!is.null(excluded_patterns)){ degs_filtered <- degs_filtered[!excluded_patterns |> paste(collapse = '|') |> grepl(degs_filtered$gene),] }
   degs_filtered
 }
 

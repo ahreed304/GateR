@@ -6,8 +6,8 @@
 \usage{
 filter_degs(
   degs,
-  bh_threshold = 0.01,
-  logfc_threshold = 0.585,
+  bh_threshold = Inf,
+  logfc_threshold = 0,
   excluded_patterns = NULL
 )
 }
