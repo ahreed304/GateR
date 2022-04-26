@@ -14,7 +14,7 @@ mkdir <- function(path) {
   }
   else{
     'Creating new directory {path}' |> glue() |> print()
-    dir.create(path)
+    dir.create(path, recursive = TRUE)
   }
   path
 }
@@ -140,4 +140,23 @@ cowtime <- function(expr, name = NA) {
 
 # distraction <- function() {
 #   say("fortune","random")
+# }
+
+
+
+#' to_clipboard
+#'
+#' @importFrom clipr write_clip
+#' @param data
+#'
+#' @return
+#' @export
+#'
+#' @examples
+#' to_clipboard('foo')
+to_clipboard <- function(data) { clipr::write_clip(data) }
+
+
+# generate_color_palette <- function(n) {
+#   n |> iwanthue(0, 360, 36, 180, 13, 73)
 # }

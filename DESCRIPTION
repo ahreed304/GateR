@@ -1,7 +1,7 @@
 Package: GateR
 Type: Package
 Title: Assorted Analysis Tools for the Gate Lab
-Version: 0.0.1.0001
+Version: 0.0.002
 Authors@R: 
     person("Austin", "Reed", , "austin.reed@northwestern.edu", role = c("aut", "cre"),
            comment = c(ORCID = "YOUR-ORCID-ID"))
@@ -19,4 +19,6 @@ Imports:
     glue,
     lubridate,
     magrittr,
-    qpdf
+    qpdf,
+    Seurat,
+    clipr
