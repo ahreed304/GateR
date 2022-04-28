@@ -91,7 +91,8 @@ filter_degs_object <- function(degs, bh_threshold = Inf, logfc_threshold = 0, ex
 #' parse_deg_filename("path/to/file.csv")
 parse_deg_filename <- function(deg_file) {
   filename <- deg_file |> strsplit('/') |> unlist() %>% .[[length(.)]]
-  filename <- substr(filename, 1, nchar(deg_file) - 4)
+  # remove file extension if present
+  if (substring(filename, nchar(filename) - 3, nchar(filename)) == '.csv') { filename <- substr(filename, 1, nchar(filename) - 4) }
   split_comparisons <- filename |> strsplit('_vs._') |> unlist()
   result <- split_comparisons |> lapply(\(comparison) {deg_file = "B_intermediate__als_slow_vs._B_intermediate__healthy_control.csv"
   split_again <- comparison |> strsplit('__') |> unlist()
