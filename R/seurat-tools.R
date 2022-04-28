@@ -14,7 +14,7 @@ merge_seurat_objects <- function(seurat_object_list) {
 #' Basic Umap
 #'
 #' @importFrom Seurat DimPlot
-#' @param seurat
+#' @param seurat seurat object
 #' @param colors
 #'
 #' @return

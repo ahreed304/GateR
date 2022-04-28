@@ -7,6 +7,8 @@
 basic_umap(seurat, colors = NULL)
 }
 \arguments{
+\item{seurat}{seurat object}
+
 \item{colors}{}
 }
 \value{

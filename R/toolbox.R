@@ -14,11 +14,36 @@ mkdir <- function(path) {
   }
   else{
     'Creating new directory {path}' |> glue() |> print()
-    dir.create(path, recursive = TRUE)
+    dir.create(path)
   }
   path
 }
 
+#' mkdirs
+#'
+#' @import glue
+#' @param path
+#'
+#' @return
+#' @export
+#'
+#' @examples
+#' mkdirs('path/to/dir')
+mkdirs <- function(path) {
+  dir_split_base <- path |> strsplit('/') |> unlist()
+  mkdir_recursive <- function(dir_split) {
+    current_folder <- dir_split |> paste(collapse = '/') |> paste0('/')
+    if(!dir.exists(current_folder)) {
+      'Creating new directory {current_folder}' |> glue() |> print()
+      dir.create(current_folder)
+    }
+    if (length(dir_split) < length(dir_split_base)) {
+      mkdir_recursive(dir_split_base[1:(length(dir_split) + 1)])
+    }
+  }
+  mkdir_recursive(dir_split_base[1])
+  path
+}
 #' %!in%
 #'
 #' @param x Item to compare
@@ -127,7 +152,7 @@ cowtime <- function(expr, name = NA) {
   if (!is.na(name)) {
     msg <- glue("\nstarting \"{name}\"\n{msg}")
   }
-  cowsay(msg, "chicken")
+  say(msg, "chicken")
   expr
   e_time <- now(tzone = "US/Central")
   delta_time <- (e_time - s_time) %>% as.duration %>% as.character
