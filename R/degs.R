@@ -1,4 +1,39 @@
-#' Read DEGs
+#' Read DEGs folder
+#'
+#' @import glue
+#' @param degs_path path to folder or file containing DEGs
+#'
+#' @return
+#' @export
+#'
+#' @examples
+#' read_degs('path/to/folder')
+read_degs <- function(degs_path) {
+  if (dir.exists(degs_path)) { read_degs_folder(degs_path) }
+  else if (file.exists(degs_path)) { read_degs_file(degs_path) }
+  else { "No file or folder exists at {degs_path}" |> glue() |> stop() }
+}
+
+#' Read DEGs folder
+#'
+#' @import yaml
+#' @import glue
+#' @param degs_folder path to folder containing degs.csv and metadata.yml
+#'
+#' @return
+#' @export
+#'
+#' @examples
+#' read_degs_folder('path/to/folder')
+read_degs_folder <- function(degs_folder) {
+  degs <- list()
+  degs$degs <- "{degs_folder}/degs.csv" |> glue() |> read_degs_file()
+  degs$metadata <- "{degs_folder}/metadata.yml" |> glue() |> yaml::read_yaml()
+  degs
+}
+
+
+#' Read DEGs file
 #'
 #' @import data.table
 #' @param file csv file containing degs
@@ -7,8 +42,8 @@
 #' @export
 #'
 #' @examples
-#' read_degs('path/to/file')
-read_degs <- function(file) {
+#' read_degs_file('path/to/file.csv')
+read_degs_file <- function(file) {
   degs <- fread(file)
   degs <- degs |> setnames("V1", "gene")
   degs

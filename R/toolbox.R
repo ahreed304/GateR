@@ -83,8 +83,7 @@ mkdirs <- function(path) {
 #'
 #' @param files List of tsv/csv files to be read as dataframes and combined.
 #' @param ids List of ids in same length/order as files. If not provided, defaults to files param value.
-#' @import data.table
-#' @import dplyr
+#' @importFrom data.table fread
 #' @return
 #' @export
 #'
@@ -100,7 +99,7 @@ merge_csvs <- function(files, ids = files) {
 #'
 #' @param dfs List of dataframes to be combined.
 #' @param ids List of ids in same length/order as files. If not provided, defaults to names(dfs).
-#' @import dplyr
+#' @importFrom dplyr bind_rows
 #' @return
 #' @export
 #'
@@ -136,7 +135,7 @@ merge_pdfs <- function(dir) {
 #' Cowtime
 #'
 #' @import cowsay
-#' @import lubridate
+#' @importFrom lubridate now
 #' @param expr Expression to be timed.
 #' @param name (Optional) Name of expression to be printed in console
 #'
