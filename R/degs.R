@@ -45,7 +45,7 @@ read_degs_folder <- function(degs_folder) {
 #' read_degs_file('path/to/file.csv')
 read_degs_file <- function(file) {
   degs <- fread(file)
-  degs <- degs |> setnames("V1", "gene")
+  if ("V1" %in% colnames(degs)) { degs <- degs |> setnames("V1", "gene") }
   degs
 }
 
