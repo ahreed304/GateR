@@ -22,14 +22,15 @@ mkdir <- function(path) {
 #' mkdirs
 #'
 #' @import glue
-#' @param path
-#'
+#' @param path path to directory
+#' @param glue = TRUE.  If TRUE, input passed through the glue() function
 #' @return
 #' @export
 #'
 #' @examples
 #' mkdirs('path/to/dir')
-mkdirs <- function(path) {
+mkdirs <- function(path, glue = TRUE) {
+  if (glue) { path <- path |> glue() }
   dir_split_base <- path |> strsplit('/') |> unlist()
   mkdir_recursive <- function(dir_split) {
     current_folder <- dir_split |> paste(collapse = '/') |> paste0('/')
@@ -44,6 +45,8 @@ mkdirs <- function(path) {
   mkdir_recursive(dir_split_base[1])
   path
 }
+
+
 #' %!in%
 #'
 #' @param x Item to compare
@@ -180,7 +183,23 @@ cowtime <- function(expr, name = NA) {
 #' to_clipboard('foo')
 to_clipboard <- function(data) { clipr::write_clip(data) }
 
+get_r_location <- function() {
+  file.path(R.home("bin"), "R")
+}
 
-# generate_color_palette <- function(n) {
-#   n |> iwanthue(0, 360, 36, 180, 13, 73)
-# }
+  # generate_color_palette <- function(n) {
+  #   n |> iwanthue(0, 360, 36, 180, 13, 73)
+  # }
+
+#' get_filename Given a full path, this function returns just the filename.
+#'
+#' @param path
+#'
+#' @return
+#' @export
+#'
+#' @examples
+#' get_filename('/path/to/file.txt')
+get_filename <- function(path) {
+  path |> strsplit('/') |> unlist() |> (\(.){ .[[length(.)]] })()
+}

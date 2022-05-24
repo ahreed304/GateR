@@ -4,10 +4,12 @@
 \alias{mkdirs}
 \title{mkdirs}
 \usage{
-mkdirs(path)
+mkdirs(path, glue = TRUE)
 }
 \arguments{
-\item{path}{}
+\item{path}{path to directory}
+
+\item{glue}{= TRUE.  If TRUE, input passed through the glue() function}
 }
 \value{
 
