@@ -63,7 +63,7 @@ read_degs_file <- function(file) {
 #' @examples
 #''path/to/file' |> read_degs() |> filter_degs(logfc_threshold = 0.25, excluded_patterns = c("^RP", "^XIST$"))
 filter_degs <- function(degs, bh_threshold = Inf, logfc_threshold = 0, excluded_patterns = NULL) {
-  if (class(degs) == 'list') { filter_degs_object(degs, bh_threshold, logfc_threshold, excluded_patterns) }
+  if (class(degs[[1]]) == 'list') { filter_degs_object(degs, bh_threshold, logfc_threshold, excluded_patterns) }
   else { filter_degs_df(degs, bh_threshold, logfc_threshold, excluded_patterns) }
 }
 
