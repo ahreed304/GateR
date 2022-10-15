@@ -6,9 +6,6 @@
 \usage{
 gatelab_banner()
 }
-\value{
-
-}
 \description{
 Gate Lab Banner
 }

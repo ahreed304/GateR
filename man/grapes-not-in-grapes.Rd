@@ -11,9 +11,6 @@ x \%!in\% y
 
 \item{y}{Item to compare}
 }
-\value{
-
-}
 \description{
 \%!in\%
 }

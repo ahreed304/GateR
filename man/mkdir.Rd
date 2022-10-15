@@ -9,9 +9,6 @@ mkdir(path)
 \arguments{
 \item{path}{}
 }
-\value{
-
-}
 \description{
 mkdir
 }

@@ -9,9 +9,6 @@ get_filename(path)
 \arguments{
 \item{path}{}
 }
-\value{
-
-}
 \description{
 get_filename Given a full path, this function returns just the filename.
 }

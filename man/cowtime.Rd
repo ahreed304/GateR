@@ -11,9 +11,6 @@ cowtime(expr, name = NA)
 
 \item{name}{(Optional) Name of expression to be printed in console}
 }
-\value{
-
-}
 \description{
 Cowtime
 }

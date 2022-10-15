@@ -11,9 +11,6 @@ display_banner(banner, color_map, color_legend)
 
 \item{color_map}{color codes for banner}
 }
-\value{
-
-}
 \description{
 Display Banner
 }

@@ -6,9 +6,6 @@
 \usage{
 gater_banner()
 }
-\value{
-
-}
 \description{
 GateR Banner
 }

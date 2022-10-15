@@ -11,9 +11,6 @@ merge_dfs(dfs, ids = names(dfs))
 
 \item{ids}{List of ids in same length/order as files. If not provided, defaults to names(dfs).}
 }
-\value{
-
-}
 \description{
 Merge DFs
 }

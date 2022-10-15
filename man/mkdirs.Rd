@@ -11,9 +11,6 @@ mkdirs(path, glue = TRUE)
 
 \item{glue}{= TRUE.  If TRUE, input passed through the glue() function}
 }
-\value{
-
-}
 \description{
 mkdirs
 }

@@ -9,9 +9,6 @@ to_clipboard(data)
 \arguments{
 \item{data}{}
 }
-\value{
-
-}
 \description{
 to_clipboard
 }

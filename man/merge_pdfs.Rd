@@ -9,9 +9,6 @@ merge_pdfs(dir)
 \arguments{
 \item{dir}{Directory containing PDFs to combine}
 }
-\value{
-
-}
 \description{
 Merge PDFs
 }
